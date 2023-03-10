@@ -1,0 +1,131 @@
+﻿@page "/history"
+@using System.ComponentModel
+@using InterviewApp.Models
+@using InterviewApp.Pages.GearHistory
+@inject NavigationManager nm 
+@inherits GearHistoryBase
+@attribute [Authorize]
+<br/>
+<div class="container">
+    <h3>Historique des travaux réalisés</h3>
+    <hr />
+    <Button OnClick="()=>ShowAddModal()" Type="@ButtonType.Primary">ajouter un enregistrement</Button>
+    
+    <br/>
+    <Table 
+           TItem="GearViewModel"
+           DataSource="@gears"
+           Total="total"
+           OnChange="@onChange"
+           HidePagination="false"
+           @bind-PageIndex="pageIndex"
+           @bind-PageSize="pageSize">
+        <Column Title="Numéro série" Field="@context.SerialNumber" />
+        <Column Title="Type" Field="@context.GearTypeName" />
+        <Column Title="Email client" Field="@context.EmailClient" />
+        <Column Title="Technicien" Field="@context.TechnicienUserName" />
+        <Column Title="Durée" Field="@context.DurationPerMin" />
+        <Column Title="Prix de facture" Field="@context.Price" />
+        <Column Title="Description" Field="@context.Description" />
+        <ActionColumn>
+            <Space>
+                <SpaceItem>@*<Button  OnClick="()=>ShowModal(context.Id,context.UserName)">Delete</Button>*@</SpaceItem>
+                <SpaceItem><Button OnClick="()=>ShowEditModal(context)" Type="@ButtonType.Primary"
+                    Icon="@IconType.Outline.Edit" Size="@ButtonSize.Large" /></SpaceItem>
+                <SpaceItem><Button Danger OnClick="()=>ShowModal(context.SerialNumber)"
+                    Type="@ButtonType.Primary" Icon="@IconType.Outline.Delete" Size="@ButtonSize.Large" /></SpaceItem>
+            </Space>
+        </ActionColumn>
+    </Table>
+    <br />
+    @*<p><strong>PageIndex: @pageIndex | PageSize: @pageSize | Total: @total</strong></p>*@
+
+
+</div>
+<br />
+<br />
+<Modal Title="@("Confirmation")"
+       Visible="@visibleDelete"
+       OnOk="@HandleOk"
+       OnCancel="@HandleCancel"
+       ConfirmLoading="@_confirmLoading">
+    <p>@_modalText</p>
+</Modal>
+
+<Modal Title="@("Modifier")"
+       Visible="@visibleEdit"
+       OnOk="@HandleOkEdit"
+       OnCancel="@HandleCancel">
+    <Form Loading="loading" Model="@gearEdit"
+          LabelColSpan="8"
+          WrapperColSpan="16"
+          OnFinish="OnFinish"
+          @ref="@_form">
+         <FormItem Label="Numéro de série">
+            <Input @bind-Value="@gearEdit.SerialNumber" ReadOnly/>
+        </FormItem>
+        <FormItem Label="Type">
+             <Select 
+                    DataSource="@gearTypes"
+                    ValueName="@nameof(GearType.Value)"
+                    LabelName="@nameof(GearType.Name)"
+                    @bind-Value="@selectedGearTypeValue"
+                    Placeholder="Vélo ou ski">
+            </Select>
+        </FormItem>
+        <FormItem Label="Email client">
+            <Input @bind-Value="@gearEdit.EmailClient" />
+        </FormItem>
+        <FormItem Label="Technicien user name">
+            <Input @bind-Value="@gearEdit.TechnicienUserName" />
+        </FormItem>
+         <FormItem Label="Durée">
+            <AntDesign.InputNumber @bind-Value="@gearEdit.DurationPerMin" />
+        </FormItem>
+         <FormItem Label="Prix">
+            <AntDesign.InputNumber @bind-Value="@gearEdit.Price" />
+        </FormItem>
+         <FormItem Label="Description">
+            <TextArea @bind-Value="@gearEdit.Description" />
+        </FormItem>
+    </Form>
+</Modal>
+
+<Modal Title="@("Ajouter une enregistrement")"
+       Visible="@visibleAdd"
+       OnOk="@HandleOkAdd"
+       ConfirmLoading="loading"
+       OnCancel="@HandleCancel">
+    <Form Loading="loading" Model="@gearAdd"
+          LabelColSpan="8"
+          WrapperColSpan="16"
+          OnFinish="OnFinish">
+         <FormItem Label="Numéro de série">
+            <Input @bind-Value="@gearAdd.SerialNumber" />
+        </FormItem>
+        <FormItem Label="Type">
+             <Select 
+                    DataSource="@gearTypes"
+                    ValueName="@nameof(GearType.Value)"
+                    LabelName="@nameof(GearType.Name)"
+                    @bind-Value="@selectedGearTypeValue"
+                    Placeholder="Vélo ou ski">
+            </Select>
+        </FormItem>
+        <FormItem Label="Email client">
+            <Input @bind-Value="@gearAdd.EmailClient" />
+        </FormItem>
+        <FormItem Label="Technicien user name">
+            <Input @bind-Value="@gearAdd.TechnicienUserName" />
+        </FormItem>
+         <FormItem Label="Durée">
+            <AntDesign.InputNumber @bind-Value="@gearAdd.DurationPerMin" />
+        </FormItem>
+         <FormItem Label="Prix">
+            <AntDesign.InputNumber @bind-Value="@gearAdd.Price" />
+        </FormItem>
+         <FormItem Label="Description">
+            <TextArea @bind-Value="@gearAdd.Description" />
+        </FormItem>
+    </Form>
+</Modal>

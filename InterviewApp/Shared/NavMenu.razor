@@ -1,0 +1,50 @@
+﻿@inject NavigationManager MyNavigationManager
+@inject AuthenticationStateProvider AuthenticationStateProvider
+<!-- Fixed navbar -->
+<div class="navbar navbar-inverse navbar-fixed-top headroom">
+    <div class="container">
+        <div class="navbar-header">
+            <!-- Button for smallest screens -->
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse"><span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
+            <a class="navbar-brand" style="cursor: pointer;" @onclick="@(() => MyNavigationManager.NavigateTo("/"))">
+                <p style="color : white; font-size:20px; border-radius: 5px; margin-top:-10px;border-style: solid; padding :8px;text-align : center;">
+                    Vos Technicien De Confiance
+                </p>
+            </a>
+        </div>
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav pull-right">
+                @* *************************************************************************************** *@
+                <AuthorizeView>
+                    <Authorized>
+                        <li>
+                            @*<a href="/update">Bonjour, @authState.User?.Identity?.Name</a>*@
+                            <a href="/update">Bonjour, technicien_1</a>
+                        </li>
+                        <li>
+                            <a class="btn" style="cursor: pointer;" href="/logout">Se déconnecter</a>
+                        </li>
+                    </Authorized>
+                    <NotAuthorized>
+                        <li><a class="btn" href="/login">Se connecter</a></li>
+                    </NotAuthorized>
+                </AuthorizeView>
+
+            </ul>
+        </div><!--/.nav-collapse -->
+    </div>
+</div>
+<!-- /.navbar -->
+@code {
+
+    [CascadingParameter]
+    private Task<AuthenticationState> _authState { get; set; }
+
+    private AuthenticationState authState;
+
+    protected override async Task OnInitializedAsync()
+    {
+        authState = await _authState;
+    }
+
+}

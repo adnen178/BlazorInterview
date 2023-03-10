@@ -1,0 +1,78 @@
+﻿[
+  {
+    "SerialNumber": "0001",
+    "GearTypeId": 1,
+    "EmailClient": "adnen@gmail.com",
+    "TechnicienUserName": "technicien_1",
+    "DurationPerMin": 30,
+    "Price": 30,
+    "Description": "Réparation, changement de pneu"
+  },
+  {
+    "SerialNumber": "0002",
+    "GearTypeId": 1,
+    "EmailClient": "marwen@gmail.com",
+    "TechnicienUserName": "technicien_1",
+    "DurationPerMin": 15,
+    "Price": 20,
+    "Description": "Affutage et fartage"
+  },
+  {
+    "SerialNumber": "0003",
+    "GearTypeId": 1,
+    "EmailClient": "adnen@gmail.com",
+    "TechnicienUserName": "technicien_1",
+    "DurationPerMin": 30,
+    "Price": 30,
+    "Description": "Réparation, changement de pneu"
+  },
+  {
+    "SerialNumber": "0004",
+    "GearTypeId": 1,
+    "EmailClient": "marwen@gmail.com",
+    "TechnicienUserName": "technicien_1",
+    "DurationPerMin": 15,
+    "Price": 20,
+    "Description": "Affutage et fartage"
+  },
+  {
+    "SerialNumber": "0005",
+    "GearTypeId": 1,
+    "EmailClient": "adnen@gmail.com",
+    "TechnicienUserName": "technicien_1",
+    "DurationPerMin": 30,
+    "Price": 30,
+    "Description": "Réparation, changement de pneu"
+  },
+  {
+    "SerialNumber": "0006",
+    "GearTypeId": 1,
+    "EmailClient": "marwen@gmail.com",
+    "TechnicienUserName": "technicien_1",
+    "DurationPerMin": 15,
+    "Price": 20,
+    "Description": "Affutage et fartage"
+  },
+  {
+    "SerialNumber": "0007",
+    "GearTypeId": 2,
+    "EmailClient": "ali@gmail.com",
+    "TechnicienUserName": "technicien_2",
+    "DurationPerMin": 25,
+    "Price": 40,
+    "Description": "fixation complète"
+
+  },
+  {
+    "SerialNumber": "0008",
+    "GearTypeId": 2,
+    "EmailClient": "khalil@gmail.com",
+    "TechnicienUserName": "technicien_3",
+    "DurationPerMin": 45,
+    "Price": 50,
+    "Description": "Révision annuelle"
+
+  }
+
+
+]

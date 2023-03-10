@@ -1,0 +1,31 @@
+﻿@page "/"
+@inject NavigationManager _navManager
+<br />
+<div class="container">
+    <div class="row">
+        <div class="col-md-offset-1 col-md-4">
+            <div @onclick="@(() => _navManager.NavigateTo("/history?gearType=ski"))">
+                <Card Hoverable Style="width:400px;"  
+                      Bordered Cover="Ski" Actions="new[] { action }">
+                    <CardMeta Title="Skis" Description="Affutage et fartage, fixation complète, semelle" />
+                </Card>
+            </div>
+        </div>
+        <div class="col-md-offset-1 col-md-4">
+            <div @onclick="@(() => _navManager.NavigateTo("/history?gearType=bike"))">
+                <Card Hoverable Style="width:400px;"  
+                      Bordered Cover="Bike" Actions="new[] { action }">
+                    <CardMeta Title="Vélos" Description="Révision annuelle,  roue, pneu, câble de frein" />
+                </Card>
+            </div>
+        </div>
+    </div>
+</div>
+
+@code
+{
+    private RenderFragment Ski =@<img height="300" alt="example" src="/images/ski.jpg" />;
+    private RenderFragment Bike =@<img height="300" alt="example" src="/images/bike.jpg" />;
+
+    private RenderFragment action =@<Template><a class="btn" style="cursor: pointer;">Voir Plus</a></Template>;
+}

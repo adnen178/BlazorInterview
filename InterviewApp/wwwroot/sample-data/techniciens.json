@@ -1,0 +1,17 @@
+﻿[
+  {
+    "Id": 1,
+    "UserName": "technicien_1",
+    "Password": "1230"
+  },
+  {
+    "Id": 2,
+    "UserName": "technicien_1",
+    "Password": "1230"
+  },
+  {
+    "Id": 3,
+    "UserName": "technicien_3",
+    "Password": "1230"
+  }
+]

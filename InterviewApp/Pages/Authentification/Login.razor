@@ -1,0 +1,66 @@
+﻿@page "/login"
+@layout AuthLayout
+@inherits LoginBase
+<!-- /Login form -->
+<Spin Spinning=loading Size="large">
+
+    <div class="container">
+        <article class="col-xs-12 maincontent">
+            <header class="page-header">
+                <h1 class="page-title">se connecter</h1>
+            </header>
+            <div class="col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <h3 class="thin text-center">Connectez-vous à votre compte</h3>
+                        <p class="text-center text-muted">
+                            Connectez-vous à votre compte pour profiter de nos services.<br />
+                            Vous n'avez pas de compte<a href="/register"> S'inscrire</a>
+                        </p>
+                        <div>
+                            username : technicien_1, password : 1230
+                        </div>
+                        <hr>
+                        <EditForm Model="@loginModel" OnValidSubmit="HandleLogin">
+                            <DataAnnotationsValidator />
+                            <ValidationSummary />
+
+                            <div class="top-margin">
+                                <label asp-for="Input.Email">Username <span class="text-danger">*</span></label>
+                                <InputText Id="email" Class="form-control" @bind-Value="loginModel.UserName" />
+                                <ValidationMessage For="@(() => loginModel.UserName)" />
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="Input.Password">Mot de passe <span class="text-danger">*</span></label>
+                                <InputText Id="password" type="password" Class="form-control" @bind-Value="loginModel.Password" />
+                                <ValidationMessage For="@(() => loginModel.Password)" />
+                            </div>
+                            <div>
+                                @if (ShowErrors)
+                                {
+                                    <Alert Type="@AlertType.Error"
+                                       Message="@Error"
+                                       Banner
+                                       Closable />
+                                }
+                            </div>
+                            <hr>
+                            <div class="row">
+                                <div class="col-lg-7">
+                                    <b><a href="">Mot de passe oublié ?</a></b>
+                                </div>
+                                <div class="col-lg-5 text-right">
+                                    <button type="submit" class="btn btn-action">Se conneter</button>&nbsp;
+                                </div>
+                            </div>
+                        </EditForm>
+                    </div>
+                </div>
+            </div>
+           
+        </article>
+    </div>
+    <br />
+</Spin>
+
+<!-- login form -->
